@@ -39,13 +39,13 @@ program tester
     if (is > 0 .and. is <= size(testsuites)) then
       if (allocated(test_name)) then
         write(error_unit, fmt) "Suite:", testsuites(is)%name
-        call run_selected(testsuites(is)%collect, test_name, error_unit, stat)
+        call run_selected(testsuites(is)%collect, test_name, int(error_unit), stat)
         if (stat < 0) then
           error stop 1
         end if
       else
         write(error_unit, fmt) "Testing:", testsuites(is)%name
-        call run_testsuite(testsuites(is)%collect, error_unit, stat)
+        call run_testsuite(testsuites(is)%collect, int(error_unit), stat)
       end if
     else
       write(error_unit, fmt) "Available testsuites"
@@ -57,7 +57,7 @@ program tester
   else
     do is = 1, size(testsuites)
       write(error_unit, fmt) "Testing:", testsuites(is)%name
-      call run_testsuite(testsuites(is)%collect, error_unit, stat)
+      call run_testsuite(testsuites(is)%collect, int(error_unit), stat)
     end do
   end if
 
