@@ -96,5 +96,7 @@ install(
 )
 
 # add the testsuite
-enable_testing()
-add_subdirectory("test")
+if(WITH_TESTS)
+  enable_testing()
+  add_subdirectory("test")
+endif()
